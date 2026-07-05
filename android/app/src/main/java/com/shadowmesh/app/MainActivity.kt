@@ -135,6 +135,7 @@ class VPNManagerViewModelFactory(private val context: Context) : ViewModelProvid
 fun MainScreen(viewModel: VPNManagerViewModel, modifier: Modifier = Modifier) {
     val uiState by viewModel.uiState.collectAsState()
     var currentScreen by remember { mutableStateOf("Status") }
+    var showQRScanner by remember { mutableStateOf(false) }
 
     Scaffold(
         modifier = modifier,
@@ -195,6 +196,7 @@ fun MainScreen(viewModel: VPNManagerViewModel, modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(paddingValues)
             )
             currentScreen == "Settings" -> SettingsScreen(
+                viewModel = viewModel,
                 uiState = uiState,
                 onSetKillSwitch = { viewModel.setKillSwitch(it) },
                 onSetTrafficModePreference = { viewModel.setTrafficModePreference(it) },
@@ -204,6 +206,13 @@ fun MainScreen(viewModel: VPNManagerViewModel, modifier: Modifier = Modifier) {
                 onShowVPNGuide = { viewModel.setShowVPNGuideModal(true) },
                 onShowQRScanner = { showQRScanner = true },
                 modifier = Modifier.padding(paddingValues)
+            )
+        }
+
+        if (showQRScanner) {
+            com.shadowmesh.app.ui.pairing.QRScannerScreen(
+                viewModel = viewModel,
+                onDismiss = { showQRScanner = false }
             )
         }
     }
@@ -970,6 +979,7 @@ fun ServerCard(
 
 @Composable
 fun SettingsScreen(
+    viewModel: VPNManagerViewModel,
     uiState: VPNUiState,
     onSetKillSwitch: (Boolean) -> Unit,
     onSetTrafficModePreference: (TrafficModePreference) -> Unit,
