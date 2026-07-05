@@ -1,0 +1,97 @@
+/* Navigation */
+"nav_home" = "Home";
+"nav_settings" = "Settings";
+"settings_title" = "Settings";
+
+"app_tagline" = "Anonymous • Mesh • VPN";
+
+/* Activation */
+"activation_title" = "Activate ShadowMesh";
+"activation_subtitle" = "Enter your 25-character license key to continue";
+"activation_placeholder" = "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX";
+"activation_button" = "Activate Device";
+"activation_error_generic" = "Activation failed";
+
+/* Status */
+"status_ready" = "Ready to Connect";
+"status_connecting_phase1" = "Connecting (Phase 1/3)...";
+"status_connecting_phase2" = "Bypassing DPI (Phase 2/3)...";
+"status_connecting_phase3" = "Applying REALITY (Phase 3/3)...";
+"status_active" = "VPN Connection Active";
+"status_disconnecting" = "Disconnecting...";
+"status_error" = "Connection Error";
+"status_encrypted" = "AES-256 Encrypted";
+"status_not_connected" = "Not Connected";
+
+/* UI Elements */
+"button_on" = "ON";
+"button_secure" = "SECURE";
+"available_servers" = "AVAILABLE SERVERS";
+"refresh" = "Refresh";
+"logout" = "Logout";
+"ok" = "OK";
+"error" = "Error";
+"done" = "Done";
+
+/* Traffic Modes */
+"traffic_mode" = "Traffic Mode";
+"traffic_mode_label" = "Traffic Mode: %@";
+"mode_auto" = "Auto";
+"mode_auto_desc" = "Let ShadowMesh pick the best mode";
+"mode_speed" = "Speed";
+"mode_speed_desc" = "Direct connection — fastest throughput";
+"mode_stealth" = "Stealth";
+"mode_stealth_desc" = "Fragmentation + REALITY DPI bypass mode";
+
+/* Latency */
+"latency_ultra_low" = "Ultra Low";
+"latency_stable" = "Stable";
+"latency_high" = "High Latency";
+"latency_offline" = "Offline";
+
+/* Security */
+"max_sovereignty" = "Maximum Sovereignty";
+"always_on_desc" = "Enable Always-on VPN for 24/7 protection";
+"auth_reason" = "Authenticate to access ShadowMesh";
+
+/* Settings Sections */
+"settings_vpn_guide" = "VPN Setup Guide";
+"settings_vpn_guide_subtitle" = "Learn about kill switch & security features";
+"settings_vpn_protection" = "VPN Protection";
+"settings_kill_switch" = "Kill Switch";
+"settings_kill_switch_desc" = "Block traffic if VPN drops";
+"settings_split_tunneling" = "Split Tunneling";
+"settings_not_supported_ios" = "Not supported on iOS";
+"settings_custom_dns" = "Custom DNS Servers";
+"settings_custom_dns_default" = "Use default (1.1.1.1, 8.8.8.8)";
+"settings_custom_dns_count" = "%d configured";
+"settings_traffic_mode_auto" = "Automatic DPI detection";
+"settings_security" = "Security";
+"settings_security_lock" = "Security Lock";
+"settings_security_lock_desc" = "Require PIN / Biometrics on open";
+"settings_set_pin" = "Set PIN & Duress PIN";
+"settings_set_pin_desc" = "Configure primary and panic PIN";
+"settings_camouflage_mode" = "Camouflage Mode";
+"settings_camouflage_mode_desc" = "Appear as a Notes app to observers";
+"settings_desktop_pairing" = "Desktop Pairing";
+"settings_scan_qr" = "Scan QR Code";
+"settings_scan_qr_desc" = "Pair with ShadowMesh Desktop";
+"settings_about" = "About";
+"settings_about_desc" = "v4.4.0 — Anonymous by Design";
+
+/* Custom DNS View */
+"dns_title" = "Custom DNS";
+"dns_subtitle" = "Enter one DNS server per line";
+"dns_add_button" = "Add DNS Server";
+
+/* VPN Guide Modal */
+"guide_kill_switch_title" = "🛡️ Kill Switch";
+"guide_kill_switch_desc" = "Blocks all internet traffic if your VPN connection drops, preventing leaks.";
+"guide_security_lock_title" = "🔒 Security Lock";
+"guide_security_lock_desc" = "Requires PIN or biometric authentication to open ShadowMesh.";
+"guide_traffic_modes_title" = "⚡ Traffic Modes";
+"guide_traffic_auto" = "• Auto: Optimized based on DPI detection";
+"guide_traffic_speed" = "• Speed: Direct connection for fastest speeds";
+"guide_traffic_stealth" = "• Stealth: Fragmentation + REALITY for maximum bypass";
+"guide_camouflage_title" = "🎭 Camouflage Mode";
+"guide_camouflage_desc" = "Appears as a Notes app to avoid suspicion.";

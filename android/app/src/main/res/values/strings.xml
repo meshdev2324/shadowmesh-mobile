@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ShadowMesh</string>
+    <string name="app_tagline">Anonymous • Mesh • VPN</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Activation -->
+    <string name="activation_title">Activate ShadowMesh</string>
+    <string name="activation_subtitle">Enter your 25-character license key to continue</string>
+    <string name="activation_label">Activation Code</string>
+    <string name="activation_button">Activate Device</string>
+    <string name="activation_error_generic">Activation failed</string>
+
+    <!-- Status -->
+    <string name="status_ready">Ready to Connect</string>
+    <string name="status_connecting_phase1">Connecting (Phase 1/3)...</string>
+    <string name="status_connecting_phase2">Bypassing DPI (Phase 2/3)...</string>
+    <string name="status_connecting_phase3">Applying REALITY (Phase 3/3)...</string>
+    <string name="status_active">VPN Connection Active</string>
+    <string name="status_disconnecting">Disconnecting...</string>
+    <string name="status_error">Connection Error</string>
+    <string name="status_encrypted">AES-256 Encrypted</string>
+    <string name="status_not_connected">Not Connected</string>
+
+    <!-- UI Elements -->
+    <string name="button_on">ON</string>
+    <string name="button_secure">SECURE</string>
+    <string name="available_servers">AVAILABLE SERVERS</string>
+    <string name="refresh">Refresh</string>
+    <string name="logout">Logout</string>
+    <string name="ok">OK</string>
+</resources>
