@@ -12,7 +12,7 @@ on:
       - 'ios/**'
 
 env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
@@ -20,8 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: List available Xcode versions
+        run: ls /Applications | grep Xcode
+
       - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
 
       - name: Check for Project File
         run: |
@@ -34,7 +39,8 @@ jobs:
         run: |
           cd ios/ShadowMesh
           if [ -d ShadowMesh.xcodeproj ]; then
-            xcodebuild build -scheme ShadowMesh -destination 'platform=iOS Simulator,name=iPhone 15'
+            SCHEME=$(xcodebuild -list -json | jq -r '.project.schemes[0]' || echo "ShadowMesh")
+            xcodebuild build -scheme "$SCHEME" -destination 'platform=iOS Simulator,name=iPhone 15'
           elif [ -f Package.swift ]; then
             swift build
           fi

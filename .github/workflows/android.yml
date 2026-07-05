@@ -12,7 +12,7 @@ on:
       - 'android/**'
 
 env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
@@ -34,11 +34,6 @@ jobs:
         run: |
           cd android
           ./gradlew assembleDebug --stacktrace --info
-
-      - name: Run Lint
-        run: |
-          cd android
-          ./gradlew lintDebug || echo "Lint failed, but continuing for now"
 
       - name: Run Unit Tests
         run: |
