@@ -8,7 +8,7 @@
     "test:android": "cd android && ./gradlew test",
     "lint:ios": "echo 'iOS linting not implemented yet'",
     "test:ios": "echo 'iOS testing not implemented yet'",
-    "check-secrets": "gitleaks detect --source . -v"
+    "check-secrets": "trufflehog filesystem . --only-verified"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
