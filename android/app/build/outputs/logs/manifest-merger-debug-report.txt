@@ -5,7 +5,7 @@ INJECTED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/
 INJECTED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:2:1-76:12
 INJECTED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:2:1-76:12
 MERGED from [com.google.android.material:material:1.12.0] /home/red/.gradle/caches/9.3.0/transforms/1be2b5d1838db2ba87ad47fb25b87e73/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:17:1-29:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/red/.gradle/caches/9.3.0/transforms/134e5032054fc8d3799c2e7cc3a2a2ab/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/red/.gradle/caches/9.3.0/transforms/900ca16ac269c59ff84dda77c2cc0f3e/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] /home/red/.gradle/caches/9.3.0/transforms/6bedfb02e092385c1af2cc1e619a0efa/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
@@ -66,7 +66,7 @@ MERGED from [androidx.core:core-ktx:1.13.1] /home/red/.gradle/caches/9.3.0/trans
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/red/.gradle/caches/9.3.0/transforms/6fb865b9f01754cec09ed92ac30e6ae2/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/red/.gradle/caches/9.3.0/transforms/23fa6ab2ca60154ed3891609b5a6266a/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/red/.gradle/caches/9.3.0/transforms/226a957f35cf279ddc5ff40be2670326/transformed/jetified-runtime-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.security:security-crypto:1.1.0-alpha06] /home/red/.gradle/caches/9.3.0/transforms/6292fcbbeb11e15eaaeee5bf21dfdc8d/transformed/jetified-security-crypto-1.1.0-alpha06/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.security:security-crypto:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/f1684b511f8f839033aff3c187521e44/transformed/jetified-security-crypto-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.wireguard.android:tunnel:1.0.20230706] /home/red/.gradle/caches/9.3.0/transforms/537e4a75ffcb9d3432a91a10b531932a/transformed/jetified-tunnel-1.0.20230706/AndroidManifest.xml:6:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/7c7100d65e9c82a93e2f9e255717043f/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/8b39cb15b9fd095e66436a3681c48d1c/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -130,14 +130,14 @@ ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/And
 		ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:20:22-74
 uses-permission#android.permission.USE_BIOMETRIC
 ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:23:5-72
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:22:5-72
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:22:5-72
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
 	android:name
 		ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:23:22-69
 uses-permission#android.permission.USE_FINGERPRINT
 ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:24:5-74
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:25:5-74
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:25:5-74
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
 	android:name
 		ADDED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml:24:22-71
 application
@@ -245,8 +245,8 @@ INJECTED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/
 INJECTED from /home/red/MyProject/shadowmesh/mobile-native/android/app/src/main/AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.12.0] /home/red/.gradle/caches/9.3.0/transforms/1be2b5d1838db2ba87ad47fb25b87e73/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.12.0] /home/red/.gradle/caches/9.3.0/transforms/1be2b5d1838db2ba87ad47fb25b87e73/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:20:5-44
-MERGED from [androidx.biometric:biometric:1.2.0-alpha05] /home/red/.gradle/caches/9.3.0/transforms/23bbb14fcd892e8b02fd216db462a3ca/transformed/biometric-1.2.0-alpha05/AndroidManifest.xml:20:5-44
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.biometric:biometric:1.1.0] /home/red/.gradle/caches/9.3.0/transforms/eb4683967f36b5250305b211b99e757a/transformed/biometric-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/red/.gradle/caches/9.3.0/transforms/134e5032054fc8d3799c2e7cc3a2a2ab/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/red/.gradle/caches/9.3.0/transforms/134e5032054fc8d3799c2e7cc3a2a2ab/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/red/.gradle/caches/9.3.0/transforms/900ca16ac269c59ff84dda77c2cc0f3e/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
@@ -367,8 +367,8 @@ MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/red/
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/red/.gradle/caches/9.3.0/transforms/23fa6ab2ca60154ed3891609b5a6266a/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/red/.gradle/caches/9.3.0/transforms/226a957f35cf279ddc5ff40be2670326/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/red/.gradle/caches/9.3.0/transforms/226a957f35cf279ddc5ff40be2670326/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.security:security-crypto:1.1.0-alpha06] /home/red/.gradle/caches/9.3.0/transforms/6292fcbbeb11e15eaaeee5bf21dfdc8d/transformed/jetified-security-crypto-1.1.0-alpha06/AndroidManifest.xml:20:5-44
-MERGED from [androidx.security:security-crypto:1.1.0-alpha06] /home/red/.gradle/caches/9.3.0/transforms/6292fcbbeb11e15eaaeee5bf21dfdc8d/transformed/jetified-security-crypto-1.1.0-alpha06/AndroidManifest.xml:20:5-44
+MERGED from [androidx.security:security-crypto:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/f1684b511f8f839033aff3c187521e44/transformed/jetified-security-crypto-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/f1684b511f8f839033aff3c187521e44/transformed/jetified-security-crypto-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.wireguard.android:tunnel:1.0.20230706] /home/red/.gradle/caches/9.3.0/transforms/537e4a75ffcb9d3432a91a10b531932a/transformed/jetified-tunnel-1.0.20230706/AndroidManifest.xml:9:5-44
 MERGED from [com.wireguard.android:tunnel:1.0.20230706] /home/red/.gradle/caches/9.3.0/transforms/537e4a75ffcb9d3432a91a10b531932a/transformed/jetified-tunnel-1.0.20230706/AndroidManifest.xml:9:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /home/red/.gradle/caches/9.3.0/transforms/7c7100d65e9c82a93e2f9e255717043f/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44

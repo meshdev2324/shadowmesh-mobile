@@ -139,7 +139,13 @@ class WireGuardService private constructor() {
                     rxBytes += peer.rxBytes.toULong()
                     txBytes += peer.txBytes.toULong()
                     if (peer.lastHandshakeTime != null) {
-                        lastHandshake = peer.lastHandshakeTime!!.epochSecond
+                        val lh = peer.lastHandshakeTime
+                        lastHandshake = when (lh) {
+                            is Long -> lh
+                            is Number -> lh.toLong()
+                            is java.time.Instant -> lh.epochSecond
+                            else -> lh.toString().toLongOrNull() ?: lastHandshake
+                        }
                     }
                 }
                 totalBytesReceived = rxBytes
