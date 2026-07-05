@@ -17,6 +17,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
 
@@ -34,6 +36,11 @@ jobs:
         run: |
           cd android
           ./gradlew assembleDebug --stacktrace --info
+
+      - name: Run Lint
+        run: |
+          cd android
+          ./gradlew lintDebug || echo "Lint issues found, but continuing for now"
 
       - name: Run Unit Tests
         run: |

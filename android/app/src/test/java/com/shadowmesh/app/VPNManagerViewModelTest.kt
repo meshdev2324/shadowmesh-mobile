@@ -84,19 +84,19 @@ class VPNManagerViewModelTest {
     }
 
     @Test
-    fun `setTrafficMode updates state`() = runTest {
-        viewModel.setTrafficMode(TrafficModePreference.HYBRID)
+    fun `setTrafficModePreference updates state`() = runTest {
+        viewModel.setTrafficModePreference(TrafficModePreference.SPEED)
         testDispatcher.scheduler.advanceUntilIdle()
         
-        verify { vpnManager.setTrafficModePreference(TrafficModePreference.HYBRID) }
-        assertEquals(TrafficModePreference.HYBRID, viewModel.uiState.value.trafficModePreference)
+        verify { vpnManager.setTrafficModePreference(TrafficModePreference.SPEED) }
+        assertEquals(TrafficModePreference.SPEED, viewModel.uiState.value.trafficModePreference)
     }
 
     @Test
     fun `loadNodes fetches and updates state`() = runTest {
         val testNodes = listOf(
             VpnNode("1", "Test 1", "reg", "US", "1.1.1.1", "key", 0u, 0.0))
-        every { vpnManager.getNodes() } returns testNodes
+        every { apiClient.getNodes() } returns testNodes
         
         viewModel.loadNodes()
         
