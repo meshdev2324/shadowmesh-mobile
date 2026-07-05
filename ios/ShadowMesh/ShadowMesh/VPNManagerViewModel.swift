@@ -14,9 +14,6 @@ import uniffi_shadowmesh
 
 @MainActor
 class VPNManagerViewModel: ObservableObject {
-    // MARK: - Constants
-    private let DEFAULT_API_URL = "https://api.shadowmesh.org/api/v1"
-
     // MARK: - Published State
     @Published var vpnManager: VpnManager?
     @Published var apiClient: ApiClient?
@@ -55,8 +52,6 @@ class VPNManagerViewModel: ObservableObject {
     // MARK: - Services
     private let wireguardService = WireGuardService.shared
     private let secureStorage = SecureStorage.shared
-    private let KEY_PIN_HASH = "pin_hash"
-    private let KEY_PANIC_PIN_HASH = "panic_pin_hash"
     private var wgKeys: (privateKey: String, publicKey: String)?
     private var cancellables = Set<AnyCancellable>()
     
@@ -76,7 +71,7 @@ class VPNManagerViewModel: ObservableObject {
         }
 
         do {
-            let client = try createApiClient(baseUrl: DEFAULT_API_URL)
+            let client = try createApiClient(baseUrl: Config.DEFAULT_API_URL)
             let cache = try createNodeCache(maxSize: 100, ttlSeconds: 86400)
             let logger = try createSecurityLogger(
                 deviceId: getPersistentDeviceId(),
@@ -145,7 +140,7 @@ class VPNManagerViewModel: ObservableObject {
                 try vpnManager?.activate(code: code, token: token)
 
                 // Save to secure storage
-                secureStorage.save("activation_code", value: code)
+                secureStorage.save(Config.KEY_ACTIVATION_CODE, value: code)
 
                 self.isActivated = true
                 self.activationCode = code
@@ -160,15 +155,13 @@ class VPNManagerViewModel: ObservableObject {
             self.errorMessage = error.localizedDescription
         }
     }
-        }
-    }
     
     // MARK: - Persistence
     private func loadSavedSettings() {
         // Load Security Lock state
-        self.isSecurityLockEnabled = secureStorage.getBool(forKey: "isSecurityLockEnabled") ?? false
+        self.isSecurityLockEnabled = secureStorage.getBool(forKey: Config.KEY_SECURITY_LOCK_ENABLED) ?? false
         // Load from SecureStorage
-        if let killSwitch = secureStorage.getBool(forKey: "killSwitchEnabled") {
+        if let killSwitch = secureStorage.getBool(forKey: Config.KEY_KILL_SWITCH_ENABLED) {
             self.killSwitchEnabled = killSwitch
             vpnManager?.setKillSwitchEnabled(enabled: killSwitch)
         }
@@ -180,22 +173,22 @@ class VPNManagerViewModel: ObservableObject {
     func setPin(_ pin: String) {
         let salt = secureStorage.generateSalt()
         let hash = secureStorage.hashPin(pin, salt: salt)
-        try? secureStorage.setString(hash, forKey: KEY_PIN_HASH)
+        try? secureStorage.setString(hash, forKey: Config.KEY_PIN_HASH)
         try? secureStorage.setString(salt, forKey: secureStorage.KEY_PIN_SALT)
         self.isSecurityLockEnabled = true
-        secureStorage.setBool(true, forKey: "isSecurityLockEnabled")
+        secureStorage.setBool(true, forKey: Config.KEY_SECURITY_LOCK_ENABLED)
     }
     
     func setPanicPin(_ pin: String) {
         let salt = secureStorage.generateSalt()
         let hash = secureStorage.hashPin(pin, salt: salt)
-        try? secureStorage.setString(hash, forKey: KEY_PANIC_PIN_HASH)
+        try? secureStorage.setString(hash, forKey: Config.KEY_PANIC_PIN_HASH)
         try? secureStorage.setString(salt, forKey: secureStorage.KEY_PANIC_PIN_SALT)
     }
     
     private func saveSettings() {
-        secureStorage.setBool(killSwitchEnabled, forKey: "killSwitchEnabled")
-        secureStorage.setBool(isSecurityLockEnabled, forKey: "isSecurityLockEnabled")
+        secureStorage.setBool(killSwitchEnabled, forKey: Config.KEY_KILL_SWITCH_ENABLED)
+        secureStorage.setBool(isSecurityLockEnabled, forKey: Config.KEY_SECURITY_LOCK_ENABLED)
     }
     
     private func loadCachedNodes() {

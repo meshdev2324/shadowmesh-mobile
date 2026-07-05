@@ -50,14 +50,6 @@ import java.security.SecureRandom
 import android.provider.Settings
 
 private const val TAG = "VPNManagerViewModel"
-private const val KEY_PIN_HASH = "pin_hash"
-private const val KEY_PIN_SALT = "pin_salt"
-private const val KEY_PANIC_PIN_HASH = "panic_pin_hash"
-private const val KEY_PANIC_PIN_SALT = "panic_pin_salt"
-private const val KEY_VPN_CONSENT = "vpn_consent_accepted"
-private const val KEY_DEVICE_ID = "device_id"
-private const val KEY_ACTIVATION_CODE = "activation_code"
-private const val DEFAULT_API_URL = "https://api.shadowmesh.org/api/v1"
 
 class VPNManagerViewModel(private val context: Context) : ViewModel() {
     private val _uiState = MutableStateFlow(VPNUiState())
@@ -71,7 +63,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
     
     private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private val securePrefs: SharedPreferences = EncryptedSharedPreferences.create(
-        "shadowmesh_secure",
+        Config.PREFS_NAME,
         masterKeyAlias,
         context,
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
@@ -93,11 +85,11 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
     }
 
     fun hasAcceptedVpnConsent(): Boolean {
-        return securePrefs.getBoolean(KEY_VPN_CONSENT, false)
+        return securePrefs.getBoolean(Config.KEY_VPN_CONSENT, false)
     }
 
     fun acceptVpnConsent() {
-        securePrefs.edit().putBoolean(KEY_VPN_CONSENT, true).apply()
+        securePrefs.edit().putBoolean(Config.KEY_VPN_CONSENT, true).apply()
     }
 
     private suspend fun initialize() {
@@ -109,7 +101,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
         }
         
         try {
-            val client = createApiClient(DEFAULT_API_URL)
+            val client = createApiClient(Config.DEFAULT_API_URL)
             val cache = createNodeCache(100u, 86400u)
             val logger = createSecurityLogger(
                 deviceId = getPersistentDeviceId(context),
@@ -121,7 +113,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
             nodeCache = cache
 
             val isActivated = manager.isActivated()
-            val activationCode = securePrefs.getString(KEY_ACTIVATION_CODE, null)
+            val activationCode = securePrefs.getString(Config.KEY_ACTIVATION_CODE, null)
 
             // Load cached nodes from Rust NodeCache (fallback to mock)
             var nodes = cache.getAll()
@@ -202,7 +194,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
                     client.setAuthToken(token)
                     vpnManager?.activate(code, token)
                     
-                    securePrefs.edit().putString(KEY_ACTIVATION_CODE, code).apply()
+                    securePrefs.edit().putString(Config.KEY_ACTIVATION_CODE, code).apply()
                     
                     _uiState.update { 
                         it.copy(
@@ -296,7 +288,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
             val dnsServers = if (currentState.userSettings.dnsServers.isNotEmpty()) {
                 currentState.userSettings.dnsServers
             } else {
-                listOf("1.1.1.1", "8.8.8.8")
+                Config.DEFAULT_DNS_SERVERS
             }
 
             // Fetch dynamic configuration from the mesh API
@@ -308,12 +300,12 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
             }
 
             val clientAddress = config?.address ?: "10.0.0.2/32"
-            val dnsServers = config?.dns ?: if (currentState.userSettings.dnsServers.isNotEmpty()) {
+            val dnsServersFinal = config?.dns ?: if (currentState.userSettings.dnsServers.isNotEmpty()) {
                 currentState.userSettings.dnsServers
             } else {
-                listOf("1.1.1.1", "8.8.8.8")
+                Config.DEFAULT_DNS_SERVERS
             }
-            val mtu = config?.mtu ?: if (selectedNode.region == "CN" || selectedNode.region == "IR") 1280u else 1420u
+            val mtu = config?.mtu ?: if (selectedNode.region == "CN" || selectedNode.region == "IR") Config.CHINA_IRAN_MTU else Config.DEFAULT_MTU
 
             manager.initiate_connection(selectedNode, keys.second)
 
@@ -323,7 +315,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
                     privateKey = keys.first,
                     publicKey = keys.second,
                     address = clientAddress,
-                    dns = dnsServers,
+                    dns = dnsServersFinal,
                     mtu = mtu
                 )
             )
@@ -475,15 +467,15 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
     }
 
     fun verifyPin(pin: String): Boolean {
-        val panicSalt = securePrefs.getString(KEY_PANIC_PIN_SALT, null)
-        val panicHash = securePrefs.getString(KEY_PANIC_PIN_HASH, null)
+        val panicSalt = securePrefs.getString(Config.KEY_PANIC_PIN_SALT, null)
+        val panicHash = securePrefs.getString(Config.KEY_PANIC_PIN_HASH, null)
         if (panicSalt != null && panicHash != null && hashPinWithSalt(pin, panicSalt) == panicHash) {
             triggerPanicWipe()
             return false
         }
         
-        val salt = securePrefs.getString(KEY_PIN_SALT, null)
-        val storedHash = securePrefs.getString(KEY_PIN_HASH, null)
+        val salt = securePrefs.getString(Config.KEY_PIN_SALT, null)
+        val storedHash = securePrefs.getString(Config.KEY_PIN_HASH, null)
         if (storedHash == null || salt == null) {
             // No PIN set, allow anything for now but should force PIN set in prod
             return true
@@ -496,8 +488,8 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
         val salt = generateSalt()
         val hash = hashPinWithSalt(pin, salt)
         securePrefs.edit()
-            .putString(KEY_PIN_HASH, hash)
-            .putString(KEY_PIN_SALT, salt)
+            .putString(Config.KEY_PIN_HASH, hash)
+            .putString(Config.KEY_PIN_SALT, salt)
             .apply()
         _uiState.update { it.copy(isSecurityLockEnabled = true) }
     }
@@ -506,8 +498,8 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
         val salt = generateSalt()
         val hash = hashPinWithSalt(pin, salt)
         securePrefs.edit()
-            .putString(KEY_PANIC_PIN_HASH, hash)
-            .putString(KEY_PANIC_PIN_SALT, salt)
+            .putString(Config.KEY_PANIC_PIN_HASH, hash)
+            .putString(Config.KEY_PANIC_PIN_SALT, salt)
             .apply()
     }
 
@@ -526,7 +518,7 @@ class VPNManagerViewModel(private val context: Context) : ViewModel() {
     }
 
     private fun loadSecuritySettings() {
-        val hasPin = securePrefs.contains(KEY_PIN_HASH)
+        val hasPin = securePrefs.contains(Config.KEY_PIN_HASH)
         _uiState.update { it.copy(isSecurityLockEnabled = hasPin) }
     }
 
@@ -627,7 +619,7 @@ data class VPNUiState(
 
 fun getPersistentDeviceId(context: Context): String {
     val sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
-    var deviceId = sharedPrefs.getString(KEY_DEVICE_ID, null)
+    var deviceId = sharedPrefs.getString(Config.KEY_DEVICE_ID, null)
     if (deviceId == null) {
         val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         val secureRandom = SecureRandom()
@@ -640,7 +632,7 @@ fun getPersistentDeviceId(context: Context): String {
         val hashBytes = digest.digest(deviceId.toByteArray())
         deviceId = hashBytes.joinToString("") { "%02x".format(it) }
         
-        sharedPrefs.edit().putString(KEY_DEVICE_ID, deviceId).apply()
+        sharedPrefs.edit().putString(Config.KEY_DEVICE_ID, deviceId).apply()
     }
     return deviceId
 }

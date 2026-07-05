@@ -1,0 +1,20 @@
+# Node.js
+node_modules/
+package-lock.json
+.husky/_
+
+# Android
+.gradle/
+android/build/
+local.properties
+*.apk
+*.aar
+*.jks
+
+# iOS
+DerivedData/
+ios/build/
+*.xcresult
+*.xcuserstate
+Pods/
+.xcworkspace/xcuserdata/

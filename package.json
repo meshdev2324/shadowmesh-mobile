@@ -1,0 +1,27 @@
+{
+  "name": "shadowmesh-mobile-native",
+  "version": "1.0.0",
+  "description": "Native mobile applications for ShadowMesh",
+  "scripts": {
+    "prepare": "husky",
+    "lint:android": "cd android && ./gradlew lint",
+    "test:android": "cd android && ./gradlew test",
+    "lint:ios": "echo 'iOS linting not implemented yet'",
+    "test:ios": "echo 'iOS testing not implemented yet'",
+    "check-secrets": "gitleaks detect --source . -v"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7"
+  },
+  "lint-staged": {
+    "android/**/*.kt": [
+      "ktlint"
+    ],
+    "ios/**/*.swift": [
+      "swiftlint"
+    ]
+  }
+}
